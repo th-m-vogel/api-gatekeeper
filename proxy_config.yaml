@@ -1,0 +1,33 @@
+# API Gatekeeper — Allowlist Configuration
+# Add entries here to permit access to specific endpoints.
+# Only listed paths and methods are forwarded — everything else is blocked.
+# Config is reloaded on every request; no restart needed after changes.
+#
+# Path placeholders:
+#   {id}    — any single path segment (no slashes)
+#   {int}   — numeric segment only  (e.g. /api/contracts/{int}/)
+#   {uuid}  — UUID format only      (e.g. /api/resources/{uuid}/)
+#   *       — matches anything      (e.g. /api/resources/*)
+
+allowed:
+  # Examples — uncomment and adapt as needed:
+
+  # Read-only access to a collection and individual items
+  # - path: /api/users/
+  #   methods: [GET]
+  # - path: /api/users/{uuid}/
+  #   methods: [GET]
+
+  # Allow creating and updating, but not deleting
+  # - path: /api/items/
+  #   methods: [GET, POST]
+  # - path: /api/items/{uuid}/
+  #   methods: [GET, PUT, PATCH]
+
+  # Numeric ID and full sub-path wildcard
+  # - path: /api/contracts/{int}/*
+  #   methods: [GET]
+
+  # OpenAPI schema (useful for discovery)
+  # - path: /api/schema/
+  #   methods: [GET]

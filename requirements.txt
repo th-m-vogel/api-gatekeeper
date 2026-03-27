@@ -1,0 +1,8 @@
+# pip install -r requirements.txt
+#
+# Debian/Ubuntu apt equivalents:
+#   sudo apt install python3-flask python3-requests python3-yaml
+#
+flask>=3.0.0
+requests>=2.31.0
+pyyaml>=6.0
