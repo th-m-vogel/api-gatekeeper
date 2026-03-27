@@ -78,7 +78,8 @@ def is_allowed(path: str, method: str, config: list[dict]) -> bool:
     """Return True if the path+method combination is in the allowlist."""
     for entry in config:
         if path_to_pattern(entry["path"]).match(path):
-            if method.upper() in [m.upper() for m in entry.get("methods", [])]:
+            methods = [m.upper() for m in entry.get("methods", [])]
+            if "*" in methods or method.upper() in methods:
                 return True
     return False
 
@@ -151,12 +152,17 @@ def proxy(subpath):
     target_url = base_url + path
     params = dict(request.args)
 
+    # Forward Content-Type for requests with a body
+    if request.content_type:
+        headers["Content-Type"] = request.content_type
+
     try:
         resp = requests.request(
             method=request.method,
             url=target_url,
             headers=headers,
             params=params,
+            data=request.get_data(),
             timeout=60,
             verify=verify_ssl,
         )

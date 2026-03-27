@@ -90,6 +90,14 @@ allowed:
 | `{uuid}` | UUID format only (e.g. `550e8400-e29b-41d4-a716-446655440000`) |
 | `*` | Anything including slashes (all sub-paths) |
 
+Use `["*"]` as the methods value to allow all HTTP methods for a path. A fully transparent configuration that only hides credentials:
+
+```yaml
+allowed:
+  - path: /*
+    methods: ["*"]
+```
+
 The config is reloaded on every request — no restart needed when updating the allowlist.
 
 ## Running

@@ -31,3 +31,7 @@ allowed:
   # OpenAPI schema (useful for discovery)
   # - path: /api/schema/
   #   methods: [GET]
+
+  # Fully transparent — only hides credentials, allows everything
+  # - path: /*
+  #   methods: ["*"]
